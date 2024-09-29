@@ -11,10 +11,11 @@ namespace SimpleHospitalManagementSystem
     {
         public int Id { get; private set; }
         public string Ailment;
-        public string AssignedDoctor;
+        public Doctor AssignedDoctor; 
+        public Room room; 
 
 
-        public Patient(string name, int age, Gender gender, string doctor) : base(name, age, gender)
+        public Patient(string name, int age, Gender gender, Doctor doctor) : base(name, age, gender)
         {
             AssignedDoctor = doctor;
         }
