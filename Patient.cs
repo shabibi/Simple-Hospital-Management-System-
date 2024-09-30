@@ -23,10 +23,29 @@ namespace SimpleHospitalManagementSystem
         }
 
         //Methods
+        //AssignRoom(Room room): Assigns a room to the patient.
+        public void AssignRoom(Room room)
+        {
+            if (!room.VacateRoom())
+            {
+                room.OccupyRoom();
+            }
+            else
+            {
+                Console.WriteLine("Room not availble.");
+            }
+        }
+
+        // Marks the patient as discharged (set the room to null).
+        public void Discharge()
+        {
+            Room room = null;
+        }
 
         //Override the DisplayInfo() method to include PatientID and Ailment.
         public override void DisplayInfo()
         {
+            base.DisplayInfo();
             Console.WriteLine($"PatientID : {Id}, Ailment : {Ailment}, Doctor : {Ailment}");
             
         }
