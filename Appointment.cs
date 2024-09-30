@@ -30,7 +30,10 @@ namespace SimpleHospitalManagementSystem
             if (AppointmentDate== date)
             {
                 Patient.AssignedDoctor = Doctor;
-                
+            }
+            else
+            {
+                Console.WriteLine(" The Appointment Date diffrence than this date ..");
             }
         }
 
@@ -43,7 +46,7 @@ namespace SimpleHospitalManagementSystem
         //Displays appointment details.
         public void GetAppointmentDetails()
         {
-            Console.WriteLine($"Appointment scheduled for {Patient} with {Doctor} on {AppointmentDate.ToString()}"); 
+            Console.WriteLine($"Appointment scheduled for {Patient.Name} with {Doctor.Name} on {AppointmentDate.ToString()}"); 
         }
 
     }

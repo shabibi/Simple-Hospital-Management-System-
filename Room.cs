@@ -12,7 +12,7 @@ namespace SimpleHospitalManagementSystem
         public enum RoomTypes { General, ICU, OperationTheater }
         public RoomTypes RoomType;
 
-        protected bool IsOccupied = false;
+        public bool IsOccupied = false;
 
         public Room(int RNumber , RoomTypes Rtype )
         { 
@@ -24,13 +24,13 @@ namespace SimpleHospitalManagementSystem
         //: Marks the room as occupied.
         public bool OccupyRoom()
         {
-           return IsOccupied==true;
+           return IsOccupied=true;
         }
 
         //Marks the room as available
         public bool VacateRoom()
         {
-            return IsOccupied == false;
+            return IsOccupied =false;
         }
     }
 }

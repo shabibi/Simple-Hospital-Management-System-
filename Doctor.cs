@@ -14,14 +14,13 @@ namespace SimpleHospitalManagementSystem
         public List<Patient> patients = new List<Patient>();
 
        //Constructor
-        public Doctor(string name, int age, Gender gender, int doctorID, string specialization) : base(name, age, gender)
+        public Doctor(int doctorID, string name, int age, Gender gender,  string specialization) : base(name, age, gender)
         {
             DoctorID = doctorID;
             Specialization = specialization;
         }
 
         //Methods
-
         // Adds a patient to the doctor’s list.
         public void AddPatient(Patient patient)
         {

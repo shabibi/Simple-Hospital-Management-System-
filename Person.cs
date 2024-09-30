@@ -25,16 +25,15 @@ namespace SimpleHospitalManagementSystem
 
         //Method: print the person’s details.
 
-        public void DisplayInfo() 
+        public virtual void DisplayInfo() 
         {
             if (Name == null)
             {
                 Console.WriteLine("Person Not Found");
                 return;
             }
-            Console.WriteLine($"Name   : {Name}");
-            Console.WriteLine($"Age    : {Age}");
-            Console.WriteLine($"Gender : {gender}");
+            Console.WriteLine($"Name: {Name}, Age: {Age}, Gender : {gender}");
+            
         }
 
 
