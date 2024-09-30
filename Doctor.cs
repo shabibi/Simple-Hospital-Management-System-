@@ -66,5 +66,12 @@ namespace SimpleHospitalManagementSystem
             }
         }
 
+        //Override the DisplayInfo() method to include DoctorID and Specialization
+        public override void DisplayInfo()
+        {
+            base.DisplayInfo();
+            Console.WriteLine($"DoctorID : {DoctorID}, Specialization : {Specialization}");
+        }
+
     }
 }
