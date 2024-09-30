@@ -19,5 +19,52 @@ namespace SimpleHospitalManagementSystem
             DoctorID = doctorID;
             Specialization = specialization;
         }
+
+        //Methods
+
+        // Adds a patient to the doctor’s list.
+        public void AddPatient(Patient patient)
+        {
+            bool flag = false;
+            if (patient != null)
+            {
+                for (int i = 0; i < patients.Count; i++)
+                {
+                    if (patients[i] == patient)
+                    {
+                        flag = true;
+                    }
+                }
+                if (flag != true)
+                {
+                    patients.Add(patient);
+                }
+                else
+                    Console.WriteLine("This Patient Added before");
+            }
+        }
+
+        //Removes a patient from the doctor’s list.
+        public void RemovePatient(Patient patient)
+        {
+            bool flag = false;
+            if (patient != null)
+            {
+                for (int i = 0; i < patients.Count; i++)
+                {
+                    if (patients[i] == patient)
+                    {
+                        patients.RemoveAt(i);
+                        flag = true;
+                        return;
+                    }
+                }
+                if (flag != true)
+                {
+                    Console.WriteLine("This Patient Not Assigned ");
+                }
+            }
+        }
+
     }
 }
