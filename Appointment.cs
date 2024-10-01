@@ -16,14 +16,6 @@ namespace SimpleHospitalManagementSystem
         public TimeSpan? AppointmentTime = null;
         public bool IsBooked = false;
 
-        public Appointment(Patient patient, DateTime dateTime, TimeSpan timeSpan)
-        { 
-            Patient = patient;
-            AppointmentDate = dateTime.Date;
-            AppointmentTime = timeSpan;
-
-        }
-
         //Methods
         //Schedules an appointment between a patient and a doctor.
         public void ScheduleAppointment (Patient patient, DateTime date,TimeSpan time)
