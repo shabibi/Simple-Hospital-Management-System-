@@ -57,5 +57,31 @@ namespace SimpleHospitalManagementSystem
             Console.WriteLine($"DoctorID : {DoctorID}, Specialization : {Specialization}");
         }
 
+        public void AssignToClinic(Clinic clinic, DateTime day, TimeSpan period)
+        {
+            if (!AssignedClinics.Contains(clinic))
+            {
+                clinic.AddAvailableAppointment(this, day, period);
+                AssignedClinics.Add(clinic);
+            }
+            else
+                Console.WriteLine("This Clinic Assigned befor..");
+        }
+        public void DisplayAssignedClinics()
+        {
+            if(AssignedClinics.Count > 0)
+            {
+                Console.WriteLine($"{Name} Assigned in :");
+                for (int i = 0; i < AssignedClinics.Count; i++)
+                {
+                    Console.WriteLine(AssignedClinics[i].ClinicName);
+
+                }
+            }
+            else 
+                Console.WriteLine("Not assigned in any clinic");
+            
+        }
+
     }
 }
