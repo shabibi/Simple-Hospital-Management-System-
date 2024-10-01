@@ -12,6 +12,7 @@ namespace SimpleHospitalManagementSystem
         public int DoctorID { get;private set; }
         public string Specialization { get;private set; }
         public List<Patient> patients = new List<Patient>();
+        public List<Clinic> AssignedClinics = new List<Clinic>();
 
        //Constructor
         public Doctor(int doctorID, string name, int age, Gender gender,  string specialization) : base(name, age, gender)
@@ -24,23 +25,12 @@ namespace SimpleHospitalManagementSystem
         // Adds a patient to the doctor’s list.
         public void AddPatient(Patient patient)
         {
-            bool flag = false;
-            if (patient != null)
+            if (!patients.Contains(patient))
             {
-                for (int i = 0; i < patients.Count; i++)
-                {
-                    if (patients[i] == patient)
-                    {
-                        flag = true;
-                    }
-                }
-                if (flag != true)
-                {
-                    patients.Add(patient);
-                }
-                else
-                    Console.WriteLine("This Patient Added before");
+                patients.Add(patient);
             }
+            else
+                Console.WriteLine("This Patient Added before");
         }
 
         //Removes a patient from the doctor’s list.
@@ -49,16 +39,11 @@ namespace SimpleHospitalManagementSystem
             bool flag = false;
             if (patient != null)
             {
-                for (int i = 0; i < patients.Count; i++)
+                if (patients.Contains(patient))
                 {
-                    if (patients[i] == patient)
-                    {
-                        patients.RemoveAt(i);
-                        flag = true;
-                        return;
-                    }
+                    patients.Remove(patient);
                 }
-                if (flag != true)
+                else
                 {
                     Console.WriteLine("This Patient Not Assigned ");
                 }
