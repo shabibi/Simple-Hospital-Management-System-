@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,7 +45,49 @@ namespace SimpleHospitalManagementSystem
             
         }
 
-        
+        public void BookAppointment (Patient patient, Doctor doctor, DateTime appointmentDay,TimeSpan appointmentTime)
+        {
+            bool flage = false;
+            if (AvailableAppointments.ContainsKey(doctor))
+            {
+                List<Appointment> appointments = AvailableAppointments[doctor];
+                for (int i = 0; i < AvailableAppointments[doctor].Count; i++)
+                {
+                    if (!appointments[i].IsBooked)
+                    {
+                        appointments[i].ScheduleAppointment(patient, appointmentDay, appointmentTime);
+                        flage = true;
+                    }
+                }
+                if(flage != true)
+                    Console.WriteLine("Selected appointment is not available.");
+            }
+            else
+            {
+                Console.WriteLine("Doctor Not Found..");
+            }
+        }
+
+        public void DisplayAvailableAppointments()
+        {
+            foreach (var doctors in AvailableAppointments.Keys)
+            {
+                Console.WriteLine(doctors.ToString());
+                List<Appointment> appointments = AvailableAppointments[doctors];
+                for (int i = 0; i < AvailableAppointments[doctors].Count; i++)
+                {
+                    appointments[i].DisplayAppointmentDetails();
+                    
+                }
+                Console.WriteLine("**************************************************");
+            }
+
+        }
+
+
+
+
+
 
 
 
