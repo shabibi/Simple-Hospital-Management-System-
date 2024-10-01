@@ -11,42 +11,43 @@ namespace SimpleHospitalManagementSystem
     {
         //Attributes
 
-        public Patient Patient;
-        public Doctor Doctor;
-        public DateTime AppointmentDate;
+        public Patient Patient =null;
+        public DateTime? AppointmentDate = null ;
+        public TimeSpan? AppointmentTime = null;
+        public bool IsBooked = false;
 
-        //Constructor
-        public Appointment(Patient patient, Doctor doctor, DateTime DT)
+        public Appointment(Patient patient, DateTime dateTime, TimeSpan timeSpan)
         { 
             Patient = patient;
-            Doctor = doctor;
-            AppointmentDate = DT;
+            AppointmentDate = dateTime.Date;
+            AppointmentTime = timeSpan;
+
         }
 
         //Methods
         //Schedules an appointment between a patient and a doctor.
-        public void ScheduleAppointment (DateTime date)
+        public void ScheduleAppointment (Patient patient, DateTime date,TimeSpan time)
         {
-            if (AppointmentDate== date)
-            {
-                Patient.AssignedDoctor = Doctor;
-            }
-            else
-            {
-                Console.WriteLine(" The Appointment Date diffrence than this date ..");
-            }
+            Patient = patient;
+            AppointmentDate = date.Date;
+            AppointmentTime = time;
+            IsBooked = true;
         }
 
         // Cancels the scheduled appointment
-        public void CancelAppointment()
+        
+        public void CancelAppointment(out Patient patient, out DateTime? dateTime ,out TimeSpan? time)
         {
-            Doctor.patients.Remove(Patient);
+            patient =Patient;
+            dateTime = AppointmentDate;
+            time =  AppointmentTime;
+            IsBooked = false;
         }
 
         //Displays appointment details.
-        public void GetAppointmentDetails()
+        public void DisplayAppointmentDetails()
         {
-            Console.WriteLine($"Appointment scheduled for {Patient.Name} with {Doctor.Name} on {AppointmentDate.ToString()}"); 
+            Console.WriteLine($"Appointment scheduled for {Patient.Name}  on {AppointmentDate.ToString()} at {AppointmentTime.ToString()} "); 
         }
 
     }
