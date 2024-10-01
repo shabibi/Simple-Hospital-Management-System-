@@ -18,6 +18,13 @@ namespace SimpleHospitalManagementSystem
         public Dictionary<Doctor,List<Appointment>> AvailableAppointments = new Dictionary<Doctor,List<Appointment>>();
 
         //Methods
+
+        public Clinic(int id , string name, Specializations specializations)
+        {
+            ClinicID = id;
+            ClinicName = name;
+            Specialization = specializations;
+        }
         //Adds rooms to the clinic.
         public void AddRoom (Room room)
         {
