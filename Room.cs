@@ -9,7 +9,7 @@ namespace SimpleHospitalManagementSystem
     public class Room
     {
         public int RoomNumber;
-        public enum RoomTypes { General, ICU, OperationTheater }
+        public enum RoomTypes { IPR, OPR }
         public RoomTypes RoomType;
 
         public bool IsOccupied = false;
@@ -31,6 +31,11 @@ namespace SimpleHospitalManagementSystem
         public bool VacateRoom()
         {
             return IsOccupied =false;
+        }
+
+        public  void DisplayInfo()
+        {
+            Console.WriteLine($"Room Number :{RoomNumber} RoomType :{RoomType} IsOccupied :{IsOccupied}");
         }
     }
 }
