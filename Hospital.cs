@@ -42,7 +42,7 @@ namespace SimpleHospitalManagementSystem
         }
 
         //Assigns a room to a patient
-        public void AssignRoomToPatient(Patient patient, Room room)
+        public void AssignRoomToPatient(InPatient patient, Room room)
         {
             if (RoomsList.Contains(room))
             {
