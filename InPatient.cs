@@ -9,20 +9,24 @@ namespace SimpleHospitalManagementSystem
     public class InPatient : Patient
     {
         public Doctor AssignedDoctor;
-        public Room room;
+        public Room room ;
         public DateTime AdmissionDate;
 
-        public InPatient (int id, string name, int age, Gender gender, string ailment, Doctor assignedDoctor, Room room, DateTime AdmissionDate) : base(id,name,age,gender,ailment)
+        public InPatient(int id, string name, int age, Gender gender, string ailment, Doctor assignedDoctor, DateTime AdmissionDate) : base(id, name, age, gender, ailment)
         {
+            Console.WriteLine("****************Add New In Patient****************\n");
             this.AssignedDoctor = assignedDoctor;
-            this.room = room;
+
             this.AdmissionDate = AdmissionDate;
+            Console.WriteLine($"\nPatient {name} Added to Hospital System as InPatient");
+            Console.WriteLine("\n**************************************************");
         }
 
         //Methods
         //AssignRoom(Room room): Assigns a room to the patient.
         public void AssignRoom(Room room)
         {
+            Console.WriteLine("****************Assign Room****************\n");
             if (!room.VacateRoom())
             {
                 room.OccupyRoom();
@@ -34,13 +38,17 @@ namespace SimpleHospitalManagementSystem
             {
                 Console.WriteLine("Room not availble.");
             }
+            Console.WriteLine("\n**************************************************");
         }
 
         // Marks the patient as discharged (set the room to null).
         public void Discharge()
         {
+            Console.WriteLine("****************Discharge****************\n");
             room.VacateRoom();
+            Console.WriteLine($"{Name}  Discharged from room {room.RoomNumber}");
             room = null;
+
         }
 
         public override void DisplayInfo()
