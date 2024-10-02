@@ -10,7 +10,7 @@ namespace SimpleHospitalManagementSystem
     public class Patient : Person
     {
         //Attributes
-        public int Id { get; private set; }
+        public int Id;
         public string Ailment;
         
 
