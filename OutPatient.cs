@@ -12,7 +12,10 @@ namespace SimpleHospitalManagementSystem
 
         public OutPatient(int id, string name, int age, Gender gender, string ailment, Clinic ClinicAssigned) : base(id, name, age, gender, ailment)
         {
+            Console.WriteLine("****************Add New Out Patient****************\n");
             this.ClinicAssigned = ClinicAssigned;
+            Console.WriteLine($"\nPatient {name} added to {ClinicAssigned.ClinicName}");
+            Console.WriteLine("\n**************************************************");
         }
 
         public override void DisplayInfo()
