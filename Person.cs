@@ -10,9 +10,9 @@ namespace SimpleHospitalManagementSystem
     {
         // Attributes:
 
-        public string Name { get;private set; }
-        public int Age { get;private set; }   
-        public Gender gender { get;private set; }
+        public string Name;
+        public int Age;
+        public Gender gender;
         public enum Gender { Male, Female }
 
         //Constructor
