@@ -10,15 +10,15 @@ namespace SimpleHospitalManagementSystem
     {
         //Attributes
         public int DoctorID { get;private set; }
-        public string Specialization { get;private set; }
+        public Specializations Specializations;
         public List<Patient> patients = new List<Patient>();
         public List<Clinic> AssignedClinics = new List<Clinic>();
 
        //Constructor
-        public Doctor(int doctorID, string name, int age, Gender gender,  string specialization) : base(name, age, gender)
+        public Doctor(int doctorID, string name, int age, Gender gender,  Specializations specializations) : base(name, age, gender)
         {
             DoctorID = doctorID;
-            Specialization = specialization;
+            this.Specializations = specializations;
         }
 
         //Methods
@@ -54,7 +54,7 @@ namespace SimpleHospitalManagementSystem
         public override void DisplayInfo()
         {
             base.DisplayInfo();
-            Console.WriteLine($"DoctorID : {DoctorID}, Specialization : {Specialization}");
+            Console.WriteLine($"DoctorID : {DoctorID}, Specialization : {Specializations}");
         }
 
         public void AssignToClinic(Clinic clinic, DateTime day, TimeSpan period)
@@ -69,7 +69,8 @@ namespace SimpleHospitalManagementSystem
         }
         public void DisplayAssignedClinics()
         {
-            if(AssignedClinics.Count > 0)
+            Console.WriteLine("***************Display Assigned Clinics***************\n");
+            if (AssignedClinics.Count > 0)
             {
                 Console.WriteLine($"{Name} Assigned in :");
                 for (int i = 0; i < AssignedClinics.Count; i++)
@@ -80,6 +81,7 @@ namespace SimpleHospitalManagementSystem
             }
             else 
                 Console.WriteLine("Not assigned in any clinic");
+            Console.WriteLine("*****************************************");
             
         }
 
