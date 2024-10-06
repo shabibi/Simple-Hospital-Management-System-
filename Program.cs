@@ -7,23 +7,118 @@ namespace SimpleHospitalManagementSystem
 {
     internal class Program
     {
+        static Doctor doctor1;
+        static Doctor doctor2;
+        static Clinic cardiologyClinic;
+        static Clinic neurologyClinic;
         public static void Main(string[] args)
         {
-            // Create doctors
-            Doctor doctor1 = new Doctor(1, "Dr. John Smith", 45, Gender.Male, Specializations.Cardiology);
-            Doctor doctor2 = new Doctor(2, "Dr. Alice Brown", 38, Gender.Female, Specializations.Neurology);
+            
+            bool flge = false;
+            Console.WriteLine("*******************Simple Hospital Management System*********************\n");
+            Console.WriteLine("_____________________________________________________________\n");
+
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Enter Number of your Choise..\n ");
+                Console.WriteLine(" 1. Add Doctors\n");
+                Console.WriteLine(" 2. Add Clinic\n");
+                Console.WriteLine(" 3. Assign doctors to clinics\n");
+                Console.WriteLine(" 4. Create rooms for clinics\n");
+                Console.WriteLine(" 5. Add patients\n");
+                Console.WriteLine(" 6. Assign Room to patient\n");
+                Console.WriteLine(" 7. Display Available Appointments\n");
+                Console.WriteLine(" 8. Book Appointment\n");
+                Console.WriteLine(" 9. Discharge in-patient\n");
+                Console.WriteLine(" 10. Cancel Appointment\n");
+                Console.WriteLine(" 11. Exit\n");
+
+                int choise = int.Parse(Console.ReadLine());
+
+                switch (choise)
+                {
+                    case 1:
+
+                        break;
+
+                    case 2:
+
+                        break;
+
+                    case 3:
+
+
+                        break;
+
+                    case 4:
+
+                        break;
+
+                    case 5:
+
+                        break;
+
+                    case 6:
+
+                        break;
+
+                    case 7:
+
+                        break;
+
+                    case 8:
+
+                        break;
+
+                    case 9:
+
+                        break;
+
+                    case 10:
+
+                        break;
+
+                    case 11:
+                        return;
+                        break;
+
+
+                }
+                Console.WriteLine("Enter 1 to Display Menu..");
+                string count = Console.ReadLine();
+
+                if (count == "1")
+                {
+                    flge = true;
+                }
+                else
+                    flge = false;
+
+            } while (flge == true);
+            //Create doctors
+            doctor1 = new Doctor(1, "Dr. John Smith", 45, Gender.Male, Specializations.Cardiology);
+            doctor2 = new Doctor(2, "Dr. Alice Brown", 38, Gender.Female, Specializations.Neurology);
             Console.WriteLine();
+
+            cardiologyClinic = new Clinic(1, "Cardiology Clinic", Specializations.Cardiology);
+            neurologyClinic = new Clinic(2, "Neurology Clinic", Specializations.Neurology);
+
+            doctor1.AssignToClinic(cardiologyClinic, new DateTime(2024, 10, 5), TimeSpan.FromHours(3));
+            doctor2.AssignToClinic(neurologyClinic, new DateTime(2024, 10, 6), TimeSpan.FromHours(3));
+
             // Create clinics
-            Clinic cardiologyClinic = new Clinic(1, "Cardiology Clinic", Specializations.Cardiology);
-            Clinic neurologyClinic = new Clinic(2, "Neurology Clinic", Specializations.Neurology);
-            Console.WriteLine();
-            // Assign doctors to clinics and generate appointment slots (9 AM - 12 PM)
-            doctor1.AssignToClinic(cardiologyClinic, new DateTime(2024, 10, 5), TimeSpan.FromHours(3)); // Expected: Appointments generated for 9 AM, 10 AM, 11 AM
-            doctor2.AssignToClinic(neurologyClinic, new DateTime(2024, 10, 6), TimeSpan.FromHours(3));  // Expected: Appointments generated for 9 AM, 10 AM, 11 AM
-            Console.WriteLine();
             doctor1.DisplayAssignedClinics(); // Expected: Cardiology Clinic is displayed
             doctor2.DisplayAssignedClinics();                                  // Create rooms for clinics
             Console.WriteLine();
+
+            Console.WriteLine();
+            // Assign doctors to clinics and generate appointment slots (9 AM - 12 PM)
+             // Expected: Appointments generated for 9 AM, 10 AM, 11 AM
+              // Expected: Appointments generated for 9 AM, 10 AM, 11 AM
+            Console.WriteLine();
+            
             Room room1 = new Room(101, RoomTypes.IPR);  // Room for in-patients
             Room room2 = new Room(102, RoomTypes.OPR);  // Room for out-patients
           
@@ -33,12 +128,12 @@ namespace SimpleHospitalManagementSystem
             InPatient inpatient1 = new InPatient(101, "Jane Doe", 30, Gender.Female, "Cardiac Arrest", doctor1, DateTime.Now);
             Console.WriteLine();
 
-            inpatient1.AssignRoom(room1);
+            
             Console.WriteLine();
             OutPatient outpatient1 = new OutPatient(102, "Mark Doe", 28, Gender.Male, "Migraine", neurologyClinic);
 
             // Assign room to in-patient
-            //inpatient1.AssignRoom(room1); 
+            inpatient1.AssignRoom(room1); 
             // Expected: Room 101 becomes occupied
             // Book an appointment for out-patient in Cardiology Clinic
             Console.WriteLine();
