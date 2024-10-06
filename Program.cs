@@ -11,6 +11,11 @@ namespace SimpleHospitalManagementSystem
         static Doctor doctor2;
         static Clinic cardiologyClinic;
         static Clinic neurologyClinic;
+        static Room room1;
+        static Room room2;
+        static InPatient inpatient1;
+        static OutPatient outpatient1;
+
         public static void Main(string[] args)
         {
             
@@ -40,48 +45,105 @@ namespace SimpleHospitalManagementSystem
                 switch (choise)
                 {
                     case 1:
+                        //Create doctors
+                        Console.Clear();
+                        doctor1 = new Doctor(1, "Dr. John Smith", 45, Gender.Male, Specializations.Cardiology);
+                        doctor2 = new Doctor(2, "Dr. Alice Brown", 38, Gender.Female, Specializations.Neurology);
+                        doctor1.DisplayInfo();
+                        Console.WriteLine();
+                        doctor2.DisplayInfo();
 
                         break;
 
                     case 2:
-
+                        // Create clinics
+                        Console.Clear();
+                        cardiologyClinic = new Clinic(1, "Cardiology Clinic", Specializations.Cardiology);
+                        Console.WriteLine();
+                        neurologyClinic = new Clinic(2, "Neurology Clinic", Specializations.Neurology);
                         break;
 
                     case 3:
-
-
+                        // Assign doctors to clinics and generate appointment slots (9 AM - 12 PM)
+                        Console.Clear();
+                        doctor1.AssignToClinic(cardiologyClinic, new DateTime(2024, 10, 5), TimeSpan.FromHours(3));
+                        doctor2.AssignToClinic(neurologyClinic, new DateTime(2024, 10, 6), TimeSpan.FromHours(3));
+                        doctor1.DisplayAssignedClinics(); 
+                        doctor2.DisplayAssignedClinics();
                         break;
 
                     case 4:
-
+                        Console.Clear();
+                        room1 = new Room(101, RoomTypes.IPR);  // Room for in-patients
+                        room1.DisplayInfo();
+                        room2 = new Room(102, RoomTypes.OPR);  // Room for out-patients
+                        room2.DisplayInfo();
                         break;
 
                     case 5:
+                        // Create patients
+                        Console.Clear();
+                        inpatient1 = new InPatient(101, "Jane Doe", 30, Gender.Female, "Cardiac Arrest", doctor1, DateTime.Now);
+                        outpatient1 = new OutPatient(102, "Mark Doe", 28, Gender.Male, "Migraine", neurologyClinic);
+                        Console.WriteLine();
 
                         break;
 
                     case 6:
-
+                        // Assign room to in-patient
+                        Console.Clear();
+                        cardiologyClinic.AddRoom(room1); // Expected: Room 101 added to Cardiology Clinic
+                        neurologyClinic.AddRoom(room2);  // Expected: Room 102 added to Neurology Clinic
+                        // Expected: Room 101 becomes occupied
+                        inpatient1.AssignRoom(room1);
                         break;
 
                     case 7:
-
+                        Console.Clear();
+                        cardiologyClinic.DisplayAvailableAppointments();
                         break;
 
                     case 8:
+                        Console.Clear();
+                        // Book an appointment for out-patient in Cardiology Clinic
+                        // Expected: Appointment at 10 AM booked
+                        cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(10));
+                        cardiologyClinic.DisplayAvailableAppointments();
+                        // Book another appointment for the same out-patient in Cardiology Clinic
 
+                        // Expected: Appointment at 11 AM booked
+                        Console.WriteLine();
+                        cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(11));
+                        cardiologyClinic.DisplayAvailableAppointments();
+                        // Try booking a time outside available slots
+                        Console.WriteLine();
+                        cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(12));
                         break;
 
                     case 9:
+                        Console.Clear();
+                        // Discharge in-patient
+                        // Expected: Room 101 becomes available, patient discharged
+                        inpatient1.Discharge();
+                        room1.DisplayInfo();
 
                         break;
 
                     case 10:
+                        // Cancel an appointment
+                        Console.WriteLine();
+                        cardiologyClinic.DisplayAvailableAppointments();
+                        Console.WriteLine();
+                        cardiologyClinic.CancelAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(10));
+                        cardiologyClinic.DisplayAvailableAppointments();
 
                         break;
 
                     case 11:
                         return;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input..");
                         break;
 
 
@@ -97,76 +159,7 @@ namespace SimpleHospitalManagementSystem
                     flge = false;
 
             } while (flge == true);
-            //Create doctors
-            doctor1 = new Doctor(1, "Dr. John Smith", 45, Gender.Male, Specializations.Cardiology);
-            doctor2 = new Doctor(2, "Dr. Alice Brown", 38, Gender.Female, Specializations.Neurology);
-            Console.WriteLine();
-
-            cardiologyClinic = new Clinic(1, "Cardiology Clinic", Specializations.Cardiology);
-            neurologyClinic = new Clinic(2, "Neurology Clinic", Specializations.Neurology);
-
-            doctor1.AssignToClinic(cardiologyClinic, new DateTime(2024, 10, 5), TimeSpan.FromHours(3));
-            doctor2.AssignToClinic(neurologyClinic, new DateTime(2024, 10, 6), TimeSpan.FromHours(3));
-
-            // Create clinics
-            doctor1.DisplayAssignedClinics(); // Expected: Cardiology Clinic is displayed
-            doctor2.DisplayAssignedClinics();                                  // Create rooms for clinics
-            Console.WriteLine();
-
-            Console.WriteLine();
-            // Assign doctors to clinics and generate appointment slots (9 AM - 12 PM)
-             // Expected: Appointments generated for 9 AM, 10 AM, 11 AM
-              // Expected: Appointments generated for 9 AM, 10 AM, 11 AM
-            Console.WriteLine();
             
-            Room room1 = new Room(101, RoomTypes.IPR);  // Room for in-patients
-            Room room2 = new Room(102, RoomTypes.OPR);  // Room for out-patients
-          
-            cardiologyClinic.AddRoom(room1); // Expected: Room 101 added to Cardiology Clinic
-            neurologyClinic.AddRoom(room2);  // Expected: Room 102 added to Neurology Clinic
-            Console.WriteLine();                         // Create patients
-            InPatient inpatient1 = new InPatient(101, "Jane Doe", 30, Gender.Female, "Cardiac Arrest", doctor1, DateTime.Now);
-            Console.WriteLine();
-
-            
-            Console.WriteLine();
-            OutPatient outpatient1 = new OutPatient(102, "Mark Doe", 28, Gender.Male, "Migraine", neurologyClinic);
-
-            // Assign room to in-patient
-            inpatient1.AssignRoom(room1); 
-            // Expected: Room 101 becomes occupied
-            // Book an appointment for out-patient in Cardiology Clinic
-            Console.WriteLine();
-            cardiologyClinic.DisplayAvailableAppointments();
-            Console.WriteLine();
-            cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(10)); // Expected: Appointment at 10 AM booked
-                                                                                                                       // View doctor's assigned clinics
-            Console.WriteLine();
-            //View available appointments in Cardiology Clinic
-            cardiologyClinic.DisplayAvailableAppointments();// Expected: Show available slots for Dr. John Smith at 9 AM, 11 AM (10 AM is booked)
-            Console.WriteLine();
-            // Discharge in-patient
-
-            inpatient1.Discharge();
-            // Expected: Room 101 becomes available, patient discharged
-            // Book another appointment for the same out-patient in Cardiology Clinic
-            Console.WriteLine();
-            cardiologyClinic.BookAppointment(outpatient1,doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(11)); // Expected: Appointment at 11 AM booked
-            // Try booking a time outside available slots
-            Console.WriteLine();
-            cardiologyClinic.BookAppointment(outpatient1,doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(12));
-            // Expected: No available appointments for this time
-            // Cancel an appointment
-            Console.WriteLine();
-            cardiologyClinic.DisplayAvailableAppointments();
-            Console.WriteLine();
-            cardiologyClinic.CancelAppointment(outpatient1,doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(10));
-            Console.WriteLine();
-            cardiologyClinic.DisplayAvailableAppointments();
-            // Expected: Appointment cancellation message for 10 AM
-            // View available appointments after booking and cancellation
-           
-            // Expected: 10 AM slot available again, 9 AM and 11 AM booked
         }
     }
 
