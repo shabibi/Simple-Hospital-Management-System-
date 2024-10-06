@@ -29,10 +29,9 @@ namespace SimpleHospitalManagementSystem
             Console.WriteLine("****************Assign Room****************\n");
             if (!room.VacateRoom())
             {
-                room.OccupyRoom();
-                this.room = room;
+                    this.room = room;
+                  Console.WriteLine($"{Name}  assigned to room {room.RoomNumber}");
 
-                Console.WriteLine($"{Name}  assigned to room {room.RoomNumber}");
             }
             else
             {
@@ -45,9 +44,15 @@ namespace SimpleHospitalManagementSystem
         public void Discharge()
         {
             Console.WriteLine("****************Discharge****************\n");
-            room.VacateRoom();
-            Console.WriteLine($"{Name}  Discharged from room {room.RoomNumber}");
-            room = null;
+            if(!room.VacateRoom())
+            {
+                Console.WriteLine($"{Name}  Discharged from room {room.RoomNumber}");
+                room = null;
+            }
+            else
+                Console.WriteLine("Room is  Empty.");
+
+
 
         }
 
