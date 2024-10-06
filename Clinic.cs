@@ -27,6 +27,7 @@ namespace SimpleHospitalManagementSystem
             ClinicID = id;
             ClinicName = name;
             Specialization = specializations;
+            Console.WriteLine($"{name} Added to Hospital Management System");
         }
         //Adds rooms to the clinic.
         public void AddRoom (Room room)
