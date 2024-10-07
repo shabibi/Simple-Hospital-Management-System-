@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SimpleHospitalManagementSystem
 {
-    public class Room
+    public class Room :IRoomManagement
     {
         public int RoomNumber;
         public enum RoomTypes { IPR, OPR }
         public RoomTypes RoomType;
 
-        public bool IsOccupied = false;
+        public bool IsOccupied { set ; get; }
 
         public Room(int RNumber , RoomTypes Rtype )
         { 
