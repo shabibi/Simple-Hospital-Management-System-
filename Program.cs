@@ -100,7 +100,7 @@ namespace SimpleHospitalManagementSystem
 
                     case 7:
                         Console.Clear();
-                        cardiologyClinic.DisplayAvailableAppointments();
+                        cardiologyClinic.DisplayInfo();
                         break;
 
                     case 8:
@@ -108,13 +108,13 @@ namespace SimpleHospitalManagementSystem
                         // Book an appointment for out-patient in Cardiology Clinic
                         // Expected: Appointment at 10 AM booked
                         cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(10));
-                        cardiologyClinic.DisplayAvailableAppointments();
+                        cardiologyClinic.DisplayInfo();
                         // Book another appointment for the same out-patient in Cardiology Clinic
 
                         // Expected: Appointment at 11 AM booked
                         Console.WriteLine();
                         cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(11));
-                        cardiologyClinic.DisplayAvailableAppointments();
+                        cardiologyClinic.DisplayInfo();
                         // Try booking a time outside available slots
                         Console.WriteLine();
                         cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(12));
@@ -132,10 +132,10 @@ namespace SimpleHospitalManagementSystem
                     case 10:
                         // Cancel an appointment
                         Console.WriteLine();
-                        cardiologyClinic.DisplayAvailableAppointments();
+                        cardiologyClinic.DisplayInfo();
                         Console.WriteLine();
                         cardiologyClinic.CancelAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(10));
-                        cardiologyClinic.DisplayAvailableAppointments();
+                        cardiologyClinic.DisplayInfo();
 
                         break;
 
@@ -161,6 +161,8 @@ namespace SimpleHospitalManagementSystem
             } while (flge == true);
             
         }
+
+        
     }
 
     }

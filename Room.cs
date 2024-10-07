@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleHospitalManagementSystem
 {
-    public class Room :IRoomManagement
+    public class Room :IRoomManagement ,IDisplayInfo
     {
         public int RoomNumber;
         public enum RoomTypes { IPR, OPR }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleHospitalManagementSystem
 {
-    public class OutPatient : Patient
+    public class OutPatient : Patient 
     {
         public Clinic ClinicAssigned;
 

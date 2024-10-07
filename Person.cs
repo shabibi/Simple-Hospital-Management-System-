@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleHospitalManagementSystem
 {
-    public abstract class Person
+    public abstract class Person :IDisplayInfo
     {
         // Attributes:
 

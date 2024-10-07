@@ -8,7 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SimpleHospitalManagementSystem
 {
-    public class Appointment
+    public class Appointment :IDisplayInfo
     {
         //Attributes
 
@@ -39,7 +39,7 @@ namespace SimpleHospitalManagementSystem
         }
 
         //Displays appointment details.
-        public void DisplayAppointmentDetails()
+        public void DisplayInfo()
         {
             if(IsBooked) 
             Console.WriteLine($"Appointment scheduled for {Patient.Name}  on {AppointmentDate.ToString()} at {AppointmentTime.ToString()} IsBooked: {IsBooked}"); 

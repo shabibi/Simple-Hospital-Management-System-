@@ -10,7 +10,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace SimpleHospitalManagementSystem
 {
     public enum Specializations { Cardiology, Neurology, Dermatology }
-    public class Clinic
+    public class Clinic :IDisplayInfo
     {
         //Attributes
         public int ClinicID { get;private set; }
@@ -120,7 +120,8 @@ namespace SimpleHospitalManagementSystem
 
         }
 
-        public void DisplayAvailableAppointments()
+       
+        public void DisplayInfo()
         {
            
             Console.WriteLine("****************Display Available Appointments****************\n");
@@ -131,7 +132,7 @@ namespace SimpleHospitalManagementSystem
                 
                 for (int i = 0; i < AvailableAppointments[doctors].Count; i++)
                 {
-                        appointments[i].DisplayAppointmentDetails();
+                        appointments[i].DisplayInfo();
 
                 }
                 Console.WriteLine("**************************************************");
