@@ -61,5 +61,14 @@ namespace SimpleHospitalManagementSystem
             }
             Console.WriteLine($"vitals value Added to {patient.Name} file ");
         }
+
+        // Manages the administration of prescribed medication to patients.
+        public void AdministerMedication(Patient patient, string medication)
+        {
+            Console.WriteLine($"Nurse {Name} is administering {medication} to {patient.Name}\n ");
+            patient.MedicationHistory.Add(medication);
+            Console.WriteLine($"{medication} has been successfully administered to {patient.Name}.\n");
+
+        }
     }
 }
