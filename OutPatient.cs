@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SimpleHospitalManagementSystem
 {
-    public class OutPatient : Patient 
+    public class OutPatient : Patient , IOutPatientCare
     {
-        public Clinic ClinicAssigned;
+        public Clinic ClinicAssigned {  get; set; }
+        Nurse nurse;
 
         public OutPatient(int id, string name, int age, Gender gender, string ailment, Clinic ClinicAssigned) : base(id, name, age, gender, ailment)
         {
@@ -22,6 +23,14 @@ namespace SimpleHospitalManagementSystem
         {
             base.DisplayInfo();
             Console.WriteLine($"Doctor :{ClinicAssigned.ClinicName }");
+        }
+        public void ProvidingCare()
+        {
+            nurse.CheckVitals(this);
+            Console.WriteLine("Enter medication to administer:");
+            string medication = Console.ReadLine();
+            nurse.AdministerMedication(this, medication);
+
         }
     }
 }
