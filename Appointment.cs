@@ -8,7 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SimpleHospitalManagementSystem
 {
-    public class Appointment :IDisplayInfo
+    public class Appointment :IDisplayInfo, ISchedulable
     {
         //Attributes
 
