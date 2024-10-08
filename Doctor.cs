@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleHospitalManagementSystem
 {
-    public class Doctor : Person 
+    public class Doctor : Person ,IDisplayInfo
     {
         //Attributes
         public int DoctorID { get;private set; }

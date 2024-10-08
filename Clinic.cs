@@ -76,15 +76,24 @@ namespace SimpleHospitalManagementSystem
                 List<Appointment> appointments = AvailableAppointments[doctor];
                 for (int i = 0; i < AvailableAppointments[doctor].Count; i++)
                 {
-                    if (!appointments[i].IsBooked && appointments[i].AppointmentTime == appointmentTime && appointments[i].AppointmentDate == appointmentDay)
+                    if (!doctor.patients.Contains(patient))
                     {
-                        appointments[i].ScheduleAppointment(patient, appointmentDay, appointmentTime,true);
-                        Console.WriteLine($"{patient.Name} Assigned appointment on {appointmentDay.ToString("yyy-MM-dd")} at {appointmentTime}");
-                        flage = true;
+                        if (!appointments[i].IsBooked && appointments[i].AppointmentTime == appointmentTime && appointments[i].AppointmentDate == appointmentDay)
+                        {
+                            appointments[i].ScheduleAppointment(patient, appointmentDay, appointmentTime, true);
+                            doctor.AddPatient(patient);
+                            Console.WriteLine($"{patient.Name} Assigned appointment on {appointmentDay.ToString("yyy-MM-dd")} at {appointmentTime}");
+                            flage = true;
+                        }
                     }
+                    else
+                    {
+                        Console.WriteLine("This Patient Added before");
+                    }
+                    if (flage != true)
+                        Console.WriteLine("Selected appointment is not available.");
                 }
-                if (flage != true)
-                    Console.WriteLine("Selected appointment is not available.");
+                    
             }
             else
             {
@@ -105,6 +114,7 @@ namespace SimpleHospitalManagementSystem
                     {
                         
                         appointments[i].CancelAppointment( patient, dateTime,  time);
+                        doctor.patients.Remove(patient);
                         Console.WriteLine($"{patient.Name} Canced appointment on {appointments[i].AppointmentDate.ToString("yyy-MM-dd")} at {appointments[i].AppointmentTime}");
                         flage = true;
                     }

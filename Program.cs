@@ -1,4 +1,5 @@
-﻿using static SimpleHospitalManagementSystem.Clinic;
+﻿using System.Diagnostics;
+using static SimpleHospitalManagementSystem.Clinic;
 using static SimpleHospitalManagementSystem.Doctor;
 using static SimpleHospitalManagementSystem.Person;
 using static SimpleHospitalManagementSystem.Room;
@@ -15,6 +16,7 @@ namespace SimpleHospitalManagementSystem
         static Room room2;
         static InPatient inpatient1;
         static OutPatient outpatient1;
+        static Nurse nurse1;
 
         public static void Main(string[] args)
         {
@@ -32,13 +34,14 @@ namespace SimpleHospitalManagementSystem
                 Console.WriteLine(" 2. Add Clinic\n");
                 Console.WriteLine(" 3. Assign doctors to clinics\n");
                 Console.WriteLine(" 4. Create rooms for clinics\n");
-                Console.WriteLine(" 5. Add patients\n");
-                Console.WriteLine(" 6. Assign Room to patient\n");
-                Console.WriteLine(" 7. Display Available Appointments\n");
-                Console.WriteLine(" 8. Book Appointment\n");
-                Console.WriteLine(" 9. Discharge in-patient\n");
-                Console.WriteLine(" 10. Cancel Appointment\n");
-                Console.WriteLine(" 11. Exit\n");
+                Console.WriteLine(" 5. Add Nurse\n");
+                Console.WriteLine(" 6. Add patients\n");
+                Console.WriteLine(" 7. Assign Room to patient\n");
+                Console.WriteLine(" 8. Display Available Appointments\n");
+                Console.WriteLine(" 9. Book Appointment\n");
+                Console.WriteLine(" 10. Discharge in-patient\n");
+                Console.WriteLine(" 11. Cancel Appointment\n");
+                Console.WriteLine(" 12. Exit\n");
 
                 int choise = int.Parse(Console.ReadLine());
 
@@ -79,17 +82,23 @@ namespace SimpleHospitalManagementSystem
                         room2 = new Room(102, RoomTypes.OPR);  // Room for out-patients
                         room2.DisplayInfo();
                         break;
-
                     case 5:
+                        nurse1 = new(111, "Sam", 23, Gender.Female, cardiologyClinic, Specializations.Cardiology);
+                        nurse1.DisplayInfo();
+                        nurse1.AssistDoctor(doctor1, outpatient1);
+                        Console.WriteLine();
+                        break;
+
+                    case 6:
                         // Create patients
                         Console.Clear();
                         inpatient1 = new InPatient(101, "Jane Doe", 30, Gender.Female, "Cardiac Arrest", doctor1, DateTime.Now);
                         outpatient1 = new OutPatient(102, "Mark Doe", 28, Gender.Male, "Migraine", neurologyClinic);
-                        Console.WriteLine();
+                       
 
                         break;
 
-                    case 6:
+                    case 7:
                         // Assign room to in-patient
                         Console.Clear();
                         cardiologyClinic.AddRoom(room1); // Expected: Room 101 added to Cardiology Clinic
@@ -98,12 +107,12 @@ namespace SimpleHospitalManagementSystem
                         inpatient1.AssignRoom(room1);
                         break;
 
-                    case 7:
+                    case 8:
                         Console.Clear();
                         cardiologyClinic.DisplayInfo();
                         break;
 
-                    case 8:
+                    case 9:
                         Console.Clear();
                         // Book an appointment for out-patient in Cardiology Clinic
                         // Expected: Appointment at 10 AM booked
@@ -120,7 +129,7 @@ namespace SimpleHospitalManagementSystem
                         cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(12));
                         break;
 
-                    case 9:
+                    case 10:
                         Console.Clear();
                         // Discharge in-patient
                         // Expected: Room 101 becomes available, patient discharged
@@ -129,7 +138,7 @@ namespace SimpleHospitalManagementSystem
 
                         break;
 
-                    case 10:
+                    case 11:
                         // Cancel an appointment
                         Console.WriteLine();
                         cardiologyClinic.DisplayInfo();
@@ -139,7 +148,7 @@ namespace SimpleHospitalManagementSystem
 
                         break;
 
-                    case 11:
+                    case 12:
                         return;
                         break;
                     default:

@@ -13,7 +13,7 @@ namespace SimpleHospitalManagementSystem
         public Clinic AssignedClinic;
         public Specializations Specialization;
         public List<Patient> AssignedPatients = new List<Patient>();
-        public List <Doctor> doctors = new List<Doctor>();
+
         //Constructor
         public Nurse (int NurseID,string name, int age, Gender gender, Clinic AssignedClinic, Specializations Specialization) :base(name,age,gender)
         {
@@ -26,10 +26,22 @@ namespace SimpleHospitalManagementSystem
         public override void DisplayInfo()
         {
             base.DisplayInfo();
-            Console.WriteLine($"DoctorID : {NurseID}, Specialization : {Specialization}, Clinic : {AssignedClinic}");
+            Console.WriteLine($"DoctorID : {NurseID}, Specialization : {Specialization}, Clinic : {AssignedClinic.ClinicName}");
         }
 
-
-
+        
+        public void AssistDoctor (Doctor doctor, Patient patient)
+        {
+            if (doctor.Specializations == this.Specialization)
+            {
+                doctor.AddPatient(patient);
+                AssignedPatients.Add(patient);
+                Console.WriteLine($"{patient.Name} Added to {doctor.Name}" );
+            }
+            else
+            {
+                Console.WriteLine("The Doctor and Nurse Not in same Clinic..\n");
+            }
+        }
     }
 }
