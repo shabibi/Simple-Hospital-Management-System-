@@ -18,6 +18,6 @@ namespace SimpleHospitalManagementSystem
 
     public interface IOutPatientCare : IPatientCare
     {
-        void ScheduleAppointment();
+       Clinic ClinicAssigned { get; set; }
     }
 }
