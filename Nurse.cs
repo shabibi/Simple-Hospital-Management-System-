@@ -26,14 +26,14 @@ namespace SimpleHospitalManagementSystem
         public override void DisplayInfo()
         {
             base.DisplayInfo();
-            Console.WriteLine($"DoctorID : {NurseID}, Specialization : {Specialization}, Clinic : {AssignedClinic.ClinicName}");
+            Console.WriteLine($"NurseID : {NurseID}, Specialization : {Specialization}, Clinic : {AssignedClinic.ClinicName}");
         }
 
         // assisting doctors with specific patients during appointments or treatments.
 
         public void AssistDoctor (Doctor doctor, Patient patient)
         {
-            if (doctor.Specializations == this.Specialization)
+            if (doctor.Specializations == this.AssignedClinic.Specialization)
             {
                 doctor.AddPatient(patient);
                 AssignedPatients.Add(patient);
@@ -48,7 +48,7 @@ namespace SimpleHospitalManagementSystem
         // Allows the nurse to check and record vital signs for a specific patient.
         public void CheckVitals(Patient patient)
         {
-            Console.WriteLine($"Checking vitals for {patient.Name} ");
+            Console.WriteLine($"***************Checking vitals for {patient.Name} ********************");
             List<string> vitals = new List<string>{ "Heart Rate", "Blood Pressure", "Temperature", "Respiratory Rate" };
             string value = null;
             Console.WriteLine("Enter the Vlues of :");
@@ -57,6 +57,7 @@ namespace SimpleHospitalManagementSystem
                 Console.WriteLine(vitals[i]);
                 value = Console.ReadLine();
                 patient.VitalSigns.Add(vitals[i],value);
+                Console.WriteLine();
 
             }
             Console.WriteLine($"vitals value Added to {patient.Name} file ");
@@ -65,6 +66,7 @@ namespace SimpleHospitalManagementSystem
         // Manages the administration of prescribed medication to patients.
         public void AdministerMedication(Patient patient, string medication)
         {
+            Console.WriteLine($"***************Administer Medication for {patient.Name} ********************");
             Console.WriteLine($"Nurse {Name} is administering {medication} to {patient.Name}\n ");
             patient.MedicationHistory.Add(medication);
             Console.WriteLine($"{medication} has been successfully administered to {patient.Name}.\n");

@@ -61,8 +61,15 @@ namespace SimpleHospitalManagementSystem
         {
             if (!AssignedClinics.Contains(clinic))
             {
-                clinic.AddAvailableAppointment(this, day, period);
-                AssignedClinics.Add(clinic);
+                if (Specializations == clinic.Specialization)
+                {
+                    clinic.AddAvailableAppointment(this, day, period);
+                    AssignedClinics.Add(clinic);
+                }
+                else
+                    Console.WriteLine("Doctor's Specialization Diffrent than clinic");
+
+
             }
             else
                 Console.WriteLine("This Clinic Assigned befor..");

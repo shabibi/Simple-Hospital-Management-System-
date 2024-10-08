@@ -25,7 +25,6 @@ namespace SimpleHospitalManagementSystem
             Console.WriteLine("*******************Simple Hospital Management System*********************\n");
             Console.WriteLine("_____________________________________________________________\n");
 
-
             do
             {
                 Console.Clear();
@@ -34,8 +33,8 @@ namespace SimpleHospitalManagementSystem
                 Console.WriteLine(" 2. Add Clinic\n");
                 Console.WriteLine(" 3. Assign doctors to clinics\n");
                 Console.WriteLine(" 4. Create rooms for clinics\n");
-                Console.WriteLine(" 5. Add Nurse\n");
-                Console.WriteLine(" 6. Add patients\n");
+                Console.WriteLine(" 5. Add patients\n");
+                Console.WriteLine(" 6. Add Nurse\n");
                 Console.WriteLine(" 7. Assign Room to patient\n");
                 Console.WriteLine(" 8. Display Available Appointments\n");
                 Console.WriteLine(" 9. Book Appointment\n");
@@ -83,18 +82,24 @@ namespace SimpleHospitalManagementSystem
                         room2.DisplayInfo();
                         break;
                     case 5:
-                        nurse1 = new(111, "Sam", 23, Gender.Female, cardiologyClinic, Specializations.Cardiology);
-                        nurse1.DisplayInfo();
-                        nurse1.AssistDoctor(doctor1, outpatient1);
-                        Console.WriteLine();
-                        break;
-
-                    case 6:
                         // Create patients
                         Console.Clear();
                         inpatient1 = new InPatient(101, "Jane Doe", 30, Gender.Female, "Cardiac Arrest", doctor1, DateTime.Now);
                         outpatient1 = new OutPatient(102, "Mark Doe", 28, Gender.Male, "Migraine", neurologyClinic);
-                       
+                        break;
+
+                    case 6:
+                        
+                        nurse1 = new(111, "Sam", 23, Gender.Female, cardiologyClinic, Specializations.Cardiology);
+                        nurse1.DisplayInfo();
+                        
+                        outpatient1.AssignToNurse(nurse1);
+                        inpatient1.AssignToNurse(nurse1);
+                        outpatient1.ProvidingCare();
+
+                        nurse1.AssistDoctor(doctor1, outpatient1);
+
+                        Console.WriteLine();
 
                         break;
 
@@ -117,13 +122,13 @@ namespace SimpleHospitalManagementSystem
                         // Book an appointment for out-patient in Cardiology Clinic
                         // Expected: Appointment at 10 AM booked
                         cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(10));
-                        cardiologyClinic.DisplayInfo();
+                        //cardiologyClinic.DisplayInfo();
                         // Book another appointment for the same out-patient in Cardiology Clinic
 
                         // Expected: Appointment at 11 AM booked
                         Console.WriteLine();
                         cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(11));
-                        cardiologyClinic.DisplayInfo();
+                        //cardiologyClinic.DisplayInfo();
                         // Try booking a time outside available slots
                         Console.WriteLine();
                         cardiologyClinic.BookAppointment(outpatient1, doctor1, new DateTime(2024, 10, 5), TimeSpan.FromHours(12));

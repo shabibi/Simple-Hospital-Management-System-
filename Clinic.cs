@@ -76,24 +76,24 @@ namespace SimpleHospitalManagementSystem
                 List<Appointment> appointments = AvailableAppointments[doctor];
                 for (int i = 0; i < AvailableAppointments[doctor].Count; i++)
                 {
-                    if (!doctor.patients.Contains(patient))
+                    if (doctor.patients.Contains(patient))
                     {
                         if (!appointments[i].IsBooked && appointments[i].AppointmentTime == appointmentTime && appointments[i].AppointmentDate == appointmentDay)
                         {
                             appointments[i].ScheduleAppointment(patient, appointmentDay, appointmentTime, true);
-                            doctor.AddPatient(patient);
                             Console.WriteLine($"{patient.Name} Assigned appointment on {appointmentDay.ToString("yyy-MM-dd")} at {appointmentTime}");
                             flage = true;
                         }
                     }
                     else
                     {
-                        Console.WriteLine("This Patient Added before");
+                        Console.WriteLine("This Patient Not Added to The Doctor ");
                     }
-                    if (flage != true)
-                        Console.WriteLine("Selected appointment is not available.");
+        
                 }
-                    
+                if (flage != true)
+                    Console.WriteLine("Selected appointment is not available.");
+
             }
             else
             {

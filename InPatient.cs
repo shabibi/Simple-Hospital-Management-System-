@@ -11,7 +11,7 @@ namespace SimpleHospitalManagementSystem
         public Doctor AssignedDoctor;
         public Room room ;
         public DateTime AdmissionDate;
-       
+      
       
         public InPatient(int id, string name, int age, Gender gender, string ailment, Doctor assignedDoctor, DateTime AdmissionDate) : base(id, name, age, gender, ailment)
         {

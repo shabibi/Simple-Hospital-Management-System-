@@ -30,11 +30,14 @@ namespace SimpleHospitalManagementSystem
             Console.WriteLine($"PatientID : {Id}, Ailment : {Ailment}");
             
         }
-
+        public void AssignToNurse(Nurse nurse)
+        {
+            this.nurse = nurse; 
+        }
         public void ProvidingCare()
         {
             nurse.CheckVitals(this);
-            Console.WriteLine("Enter medication to administer:");
+            Console.WriteLine("\nEnter medication to administer:");
             string medication = Console.ReadLine();
             nurse.AdministerMedication(this, medication);
 
