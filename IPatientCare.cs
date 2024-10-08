@@ -20,4 +20,5 @@ namespace SimpleHospitalManagementSystem
     {
        Clinic ClinicAssigned { get; set; }
     }
+
 }
