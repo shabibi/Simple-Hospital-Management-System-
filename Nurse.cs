@@ -13,7 +13,7 @@ namespace SimpleHospitalManagementSystem
         public Clinic AssignedClinic;
         public Specializations Specialization;
         public List<Patient> AssignedPatients = new List<Patient>();
-
+        
         //Constructor
         public Nurse (int NurseID,string name, int age, Gender gender, Clinic AssignedClinic, Specializations Specialization) :base(name,age,gender)
         {
@@ -29,7 +29,8 @@ namespace SimpleHospitalManagementSystem
             Console.WriteLine($"DoctorID : {NurseID}, Specialization : {Specialization}, Clinic : {AssignedClinic.ClinicName}");
         }
 
-        
+        // assisting doctors with specific patients during appointments or treatments.
+
         public void AssistDoctor (Doctor doctor, Patient patient)
         {
             if (doctor.Specializations == this.Specialization)
@@ -42,6 +43,23 @@ namespace SimpleHospitalManagementSystem
             {
                 Console.WriteLine("The Doctor and Nurse Not in same Clinic..\n");
             }
+        }
+
+        // Allows the nurse to check and record vital signs for a specific patient.
+        public void CheckVitals(Patient patient)
+        {
+            Console.WriteLine($"Checking vitals for {patient.Name} ");
+            List<string> vitals = new List<string>{ "Heart Rate", "Blood Pressure", "Temperature", "Respiratory Rate" };
+            string value = null;
+            Console.WriteLine("Enter the Vlues of :");
+            for (int i = 0; i < vitals.Count; i++)
+            {
+                Console.WriteLine(vitals[i]);
+                value = Console.ReadLine();
+                patient.VitalSigns.Add(vitals[i],value);
+
+            }
+            Console.WriteLine($"vitals value Added to {patient.Name} file ");
         }
     }
 }
